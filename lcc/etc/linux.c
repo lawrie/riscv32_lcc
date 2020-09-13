@@ -1,7 +1,7 @@
 #include <string.h>
 
 #ifndef LCCDIR
-#define LCCDIR "."
+#define LCCDIR "/riscv32_lcc/lcc/bin"
 #endif
 
 char *suffixes[] = { ".c", ".i", ".s", ".o", ".out", 0 };
@@ -9,7 +9,7 @@ char *suffixes[] = { ".c", ".i", ".s", ".o", ".out", 0 };
 char inputs[256] = "";
 
 char *cpp[] = {
-       LCCDIR "ucpp",
+       LCCDIR "/ucpp",
 	"-DLANGUAGE_C",
 	"-D_LANGUAGE_C",
 	"-DUNIX",
@@ -24,7 +24,7 @@ char *cpp[] = {
 };
 
 char *com[] =  {
-	LCCDIR "rcc",
+	LCCDIR "/rcc",
 	"-target=riscv32",
 	"$1",			/* other options handed through */
 	"$2",			/* compiler input file */
@@ -45,12 +45,12 @@ char *as[] = {
 
 char *ld[] = {
 	LCCDIR "/../../binutils/bin/ld",
-        "-h",
+	"-e",
 	"-o", "$3",		/* linker output file */
-	"$1",			/* other options handed through */
+        "-l", LCCDIR "/../../lib/c.lib",
+        "$1",			/* other options handed through */
+	LCCDIR "/../../lib/crt0.o",
 	"$2",
-        "-L" LCCDIR,
-        "-lc",
 	0
 };
 
@@ -63,7 +63,8 @@ int option(char *arg) {
 		com[0] = concat(&arg[8], "/rcc");
                 as[0] = concat(&arg[8], "/../../binutils/bin/as");
                 ld[0] = concat(&arg[8], "/../../binutils/bin/ld");
-		ld[6] = concat("-L", &arg[8]);
+		ld[5] = concat(&arg[8], "/../../lib/c.lib");
+		ld[7] = concat(&arg[8], "/../../lib/crt0.o");
 	} else if (strcmp(arg,"-g")==0);
         else
 		return 0;
