@@ -266,11 +266,11 @@ reg:	lab			"\tla x%c,%0\n"	1
 reg:    con         "\tli x%c,%0\n" 1
 
 addr:	reg			"0(x%0)"
-addr:	ADDRFP4			"%a+%F(x2)"
-addr:	ADDRLP4			"%a+%F(x2)"
+addr:	ADDRFP4			"%a+%F(x8)"
+addr:	ADDRLP4			"%a+%F(x8)"
 
-reg:    ADDRFP4			"\taddi x%c,x2,%a+%F\n" 1
-reg:    ADDRLP4			"\taddi x%c,x2,%a+%F\n" 1
+reg:    ADDRFP4			"\taddi x%c,x8,%a+%F\n" 1
+reg:    ADDRLP4			"\taddi x%c,x8,%a+%F\n" 1
 
 
 stmt:	ASGNI1(addr,reg)	"\tsb x%1,%0\n"	1
@@ -681,9 +681,9 @@ static void function(Symbol f, Symbol caller[], Symbol callee[], int ncalls) {
         int i;
         for (i = rn; i < rn + n; i++) {
             if(rs == FREG)
-                print("\tfsw f%d,%d(x2)\n", i, framesize + off + (i - rn) * 4);
+                print("\tfsw f%d,%d(x8)\n", i, framesize + off + (i - rn) * 4);
             else
-                print("\tsw x%d,%d(x2)\n", i, framesize + off + (i - rn) * 4);
+                print("\tsw x%d,%d(x8)\n", i, framesize + off + (i - rn) * 4);
         }
       }
     }
@@ -691,7 +691,7 @@ static void function(Symbol f, Symbol caller[], Symbol callee[], int ncalls) {
   if (varargs && callee[i - 1] != NULL) {
     i = callee[i - 1]->x.offset + callee[i - 1]->type->size;
 	for (i = roundup(i, 4)/4; i < 6; i++) {
-      print("\tsw x%d,%d(x2)\n", i + 12, framesize + 4 * i);
+      print("\tsw x%d,%d(x8)\n", i + 12, framesize + 4 * i);
     }
   }
   emitcode();

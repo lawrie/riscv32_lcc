@@ -1208,8 +1208,8 @@ void writeHeader(void) {
     PHdr.p_offset    = 0;
     PHdr.p_vaddr     = 0x10000;
     PHdr.p_paddr     = 0x10000;
-    PHdr.p_filesz    = totsize;
-    PHdr.p_memsz     = totsize;
+    PHdr.p_filesz    = totsize - segPtr[SEGMENT_BSS]; /* BSS segment is not in file */
+    PHdr.p_memsz     = totsize + 0x10000;
     PHdr.p_flags     = 7;   /* R+W+X permission */
     PHdr.p_align     = 0x00100;
     fwrite(&PHdr, sizeof(PHdr), 1, outFile);
@@ -1434,8 +1434,10 @@ int main(int argc, char *argv[]) {
       case 'h':
         withHeader = 0;
         break;
-      case 'e':
+      case 'e': /* option -e implies -rc 0x10000 */
         doElf = 1;
+        segStart[SEGMENT_CODE] = 0x10054;
+        segStartDefined[SEGMENT_CODE] = 1;
         break;
       case 'g':
         withDebug = 1;
