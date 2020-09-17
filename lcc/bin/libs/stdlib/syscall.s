@@ -393,12 +393,93 @@ faccess2:
 	ecall
 	jal x0,cerror
 
+	.globl mkdirat
+mkdirat:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	li x17,34
+	ecall
+	jal x0,cerror
+
 	.globl umask
 	.globl _umask
 umask:
 _umask:
 	mv x10,x12
 	li x17,166
+	ecall
+	jal x0,cerror
+
+	.globl gettimeofday
+	.globl _gettimeofday
+gettimeofday:
+_gettimeofday:
+	mv x10,x12
+	mv x11,x13
+	li x17,169
+	ecall
+	jal x0,cerror
+
+	.globl settimeofday
+	.globl _settimeofday
+settimeofday:
+_settimeofday:
+	mv x10,x12
+	mv x11,x13
+	li x17,170
+	ecall
+	jal x0,cerror
+
+	.globl getpriority
+	.globl _getpriority
+getpriority:
+_getpriority:
+	mv x10,x12
+	mv x11,x13
+	li x17,141
+	ecall
+	jal x0,cerror
+
+	.globl setpriority
+	.globl _setpriority
+setpriority:
+_setpriority:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	li x17,140
+	ecall
+	jal x0,cerror
+
+	.globl clock_gettime
+	.globl _clock_gettime
+clock_gettime:
+_clock_gettime:
+	mv x10,x12
+	mv x11,x13
+	li x17,113
+	ecall
+	jal x0,cerror
+
+	.globl clock_settime
+	.globl _clock_settime
+clock_settime:
+_clock_settime:
+	mv x10,x12
+	mv x11,x13
+	li x17,112
+	ecall
+	jal x0,cerror
+
+	.globl sigaction
+	.globl _sigaction
+sigaction:
+_sigaction:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	li x17,134
 	ecall
 	jal x0,cerror
 
