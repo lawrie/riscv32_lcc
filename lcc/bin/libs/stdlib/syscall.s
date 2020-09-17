@@ -91,6 +91,12 @@ _statx:
 	ecall
 	jal x0,cerror
 
+	.globl _fstat
+_fstat:			; Needs fixing
+	li x10,-1
+        jalr x0,x1,0
+
+
 	.globl _brk
 _brk:
 	mv x10,x12
@@ -312,13 +318,29 @@ _utimensat:
 	.globl fork
 fork:
 	li x10, 17	; SIGCHILD
-	mv x11, x1
+	mv x11, x2
 	li x17,	220	; __NR_clone
 	ecall
 	jal x0,cerror
 
-	.globl sync
-	.globl _sync
+
+	.globl execve
+execve:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	li x17,221
+	ecall
+	jal x0,cerror
+
+	.globl waitid
+waitid:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	li x17,95
+	ecall
+	jal x0,cerror
 
 	.globl nanosleep
 nanosleep:
@@ -328,6 +350,60 @@ nanosleep:
 	ecall
 	jal x0,cerror
 
+	.globl ioctl
+	.globl _ioctl
+ioctl:
+_ioctl:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	li x17,29
+	ecall
+	jal x0,cerror
+
+	.globl pipe2
+	.globl _pipe2
+pipe2:
+_pipe2:
+	mv x10,x12
+	mv x11,x13
+	li x17,59
+	ecall
+	jal x0,cerror
+
+	.globl mknod
+	.globl _mknod
+mknod:
+_mknod:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	mv x13,x15
+	li x17,33
+	ecall
+	jal x0,cerror
+
+	.globl faccess2
+faccess2:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	mv x13,x15
+	li x17,439
+	ecall
+	jal x0,cerror
+
+	.globl umask
+	.globl _umask
+umask:
+_umask:
+	mv x10,x12
+	li x17,166
+	ecall
+	jal x0,cerror
+
+	.globl sync
+	.globl _sync
 sync:
 _sync:
 	li x17,81
@@ -336,6 +412,6 @@ _sync:
 
 	.globl _isatty
 _isatty:
-	li x10,-1
+	li x10,1
         jalr x0,x1,0
 
