@@ -4,10 +4,11 @@
 
 LCCDIR =../..
 AR = ${LCCDIR}/../binutils/bin/ar
+AS = ${LCCDIR}/../binutils/bin/as
 
 DIRS =ctype eeprintf errno math softfloat libsoftfloat stdio stdlib string
 
-.PHONY:		all install clean
+.PHONY:		all clean
 
 all:
 		for i in $(DIRS) ; do \
@@ -21,9 +22,11 @@ all:
 		$(AR) -r c.lib stdlib/*.o
 		$(AR) -r c.lib string/*.o
 		$(AR) -rsv c.lib
+		$(AS) -o crt0.o crt0.s
 
 clean:
 		for i in $(DIRS) ; do \
 		  $(MAKE) -r -C $$i clean ; \
 		done
+		rm -f *.o
 		rm -f *~

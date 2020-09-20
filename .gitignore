@@ -15,9 +15,5 @@ lcc/bin/bprint
 __.SYMDEF
 *.lib
 binutils/bin
-
-
-
-
-
+*.tar
 
