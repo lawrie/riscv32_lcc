@@ -5,7 +5,7 @@
 LCCDIR =../..
 AR = ${LCCDIR}/../binutils/bin/ar
 
-DIRS =ctype eeprintf errno io math softfloat libsoftfloat stdio stdlib string
+DIRS =ctype eeprintf errno math softfloat libsoftfloat stdio stdlib string
 
 .PHONY:		all install clean
 
@@ -20,7 +20,7 @@ all:
 		$(AR) -r c.lib stdio/*.o
 		$(AR) -r c.lib stdlib/*.o
 		$(AR) -r c.lib string/*.o
-		$(AR) -rsv c.lib ./*.o
+		$(AR) -rsv c.lib
 
 clean:
 		for i in $(DIRS) ; do \

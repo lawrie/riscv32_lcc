@@ -11,6 +11,10 @@ lcc/bin/ucpp
 lcc/bin/lburg
 lcc/bin/rcc
 lcc/bin/lcc
+lcc/bin/bprint
+__.SYMDEF
+*.lib
+binutils/bin
 
 
 
