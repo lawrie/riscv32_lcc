@@ -16,7 +16,8 @@
 
 void	(*__cleanup)();
 
-struct atexit **__atexit;
+static struct atexit *head = NULL;
+struct atexit **__atexit = &head;
 
 void
 exit(int status)

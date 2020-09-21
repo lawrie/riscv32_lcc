@@ -44,16 +44,16 @@ extern	"C"	{
 #define	O_RDONLY	0		/* +1 == FREAD */
 #define	O_WRONLY	1		/* +1 == FWRITE */
 #define	O_RDWR		2		/* +1 == FREAD|FWRITE */
-#define	O_APPEND	_FAPPEND
-#define	O_CREAT		_FCREAT
-#define	O_TRUNC		_FTRUNC
-#define	O_EXCL		_FEXCL
+#define	O_APPEND	002000
+#define	O_CREAT		000100
+#define	O_TRUNC		001000
+#define	O_EXCL		000200
 /*	O_SYNC		_FSYNC		not posix, defined below */
 /*	O_NDELAY	_FNDELAY 	set in include/fcntl.h */
 /*	O_NDELAY	_FNBIO 		set in 5include/fcntl.h */
 #define	O_NONBLOCK	_FNONBLOCK
 #define	O_NOCTTY	_FNOCTTY
-#define	O_BINARY	_FBINARY
+#define	O_BINARY	000000
 
 #if	!defined(_POSIX_SOURCE)
 

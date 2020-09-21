@@ -4,8 +4,7 @@ make MAKE="make CC=\"gcc -m32\"" clean install
 cd ../lcc
 make clean all
 cd ..
-
-
-
-
+mkdir -p lib
+cp lcc/bin/libs/c.lib lib
+cp lcc/bin/libs/crt0.o lib
 
