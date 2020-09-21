@@ -40,6 +40,7 @@ char	*strtok(char *__s1, const char *__s2);
 void	*memset(void *__s, int __c, size_t __n);
 char	*strerror(int __errnum);
 size_t	strlen(const char *__s);
+char    *strndup(const char *__s, size_t __n);
 
 /*
  * Nonstandard functions.
