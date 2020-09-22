@@ -66,14 +66,15 @@ _exit:
 	li x17,93
 	ecall
 
-	.globl lseek
-	.globl _lseek
-lseek:
-_lseek:
+	.globl llseek
+	.globl _llseek
+llseek:
+_llseek:
 	mv x10,x12
 	mv x11,x13
 	mv x12,x14
 	mv x13,x15
+	mv x14,x16
 	li x17,62
 	ecall
 	jal x0,cerror
