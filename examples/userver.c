@@ -99,6 +99,5 @@ int main(int argc, char*argv[]) {
   close(newsockfd);
   close(sockfd);
 
-  _exit(0);
   return 0;
 }
