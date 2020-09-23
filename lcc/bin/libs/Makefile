@@ -6,7 +6,7 @@ LCCDIR =../..
 AR = ${LCCDIR}/../binutils/bin/ar
 AS = ${LCCDIR}/../binutils/bin/as
 
-DIRS =ctype eeprintf errno math softfloat libsoftfloat stdio stdlib string
+DIRS =ctype eeprintf errno math softfloat libsoftfloat stdio stdlib string time
 
 .PHONY:		all clean
 
@@ -21,6 +21,7 @@ all:
 		$(AR) -r c.lib stdio/*.o
 		$(AR) -r c.lib stdlib/*.o
 		$(AR) -r c.lib string/*.o
+		$(AR) -r c.lib time/*.o
 		$(AR) -rsv c.lib
 		$(AS) -o crt0.o crt0.s
 

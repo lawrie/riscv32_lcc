@@ -16,10 +16,9 @@ make lburg
 make CC="$CROSS_COMPILE" rcc
 make CC="$CROSS_COMPILE" lcc
 make CC="$CROSS_COMPILE" u_cpp
-make CC="$CROSS_COMPILE" cpp
 make clean
 cd bin/libs
 make clean
 cd ../../..
-tar -c -f riscv32_lcc.tar ../riscv32_lcc/lib ../riscv32_lcc/examples ../riscv32_lcc/binutils/bin ../riscv32_lcc/lcc/bin/include ../riscv32_lcc/lcc/bin/lcc ../riscv32_lcc/lcc/bin/rcc ../riscv32_lcc/lcc/bin/cpp ../riscv32_lcc/lcc/bin/ucpp
+tar -c -f riscv32_lcc.tar ../riscv32_lcc/lib ../riscv32_lcc/examples ../riscv32_lcc/binutils/bin ../riscv32_lcc/lcc/bin/include ../riscv32_lcc/lcc/bin/lcc ../riscv32_lcc/lcc/bin/rcc ../riscv32_lcc/lcc/bin/ucpp
 
