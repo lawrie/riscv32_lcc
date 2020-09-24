@@ -25,7 +25,7 @@ time_t mktime(struct tm *tm)
     dmsize[1] = 28;
   mon = tm->tm_mon + 1;
   while (--mon)
-    tm += dmsize[mon-1];
+    t += dmsize[mon-1];
   t += (tm->tm_mday - 1);
   /* now convert to seconds and add seconds in current day */
   t *= 24; t += tm->tm_hour;
