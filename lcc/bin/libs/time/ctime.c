@@ -4,6 +4,7 @@
  */
 #include <stdio.h>
 #include <time.h>
+#include <string.h>
 
 #define	SECS_PER_MIN	60
 #define	MINS_PER_HOUR	60
@@ -36,7 +37,7 @@ static struct tm *offtime(const time_t *clock, time_t offset) {
   register int       yleap;
   register int       *ip;
 	
-  static struct tm   tm;
+  static struct tm tm;
 
   tmp = &tm;
   days = *clock / SECS_PER_DAY;
@@ -93,7 +94,7 @@ struct tm *gmtime(const time_t *timep) {
 }
 
 struct tm *gmtime_r(const time_t *timep, struct tm *result) {
-  result = offtime(timep, 0);
+  *result = *offtime(timep, 0);
   return result;
 }
 
@@ -102,21 +103,12 @@ struct tm *localtime(const time_t *timep) {
 }
 
 struct tm *localtime_r(const time_t *timep, struct tm *result) {
-  result = offtime(timep, 0);
+  *result = *offtime(timep, 0);
   return result;
 }
 static void putnumb(register char *cp, int n) {
   *cp++ = (n / 10) % 10 + '0';
   *cp++ = n % 10 + '0';
-}
-
-char * ctime(const time_t *timep) {
-  return(asctime(localtime(timep)));
-}
-
-char *asctime_r(const struct tm *tm, char *buf) {
-  buf = asctime(tm);
-  return buf;
 }
 
 char *asctime(const struct tm *tm) {
@@ -141,5 +133,18 @@ char *asctime(const struct tm *tm) {
   result[24] = 0;
 	
   return result;
+}
+
+char *asctime_r(const struct tm *tm, char *buf) {
+  strcpy(buf, asctime(tm));
+  return buf;
+}
+
+char * ctime(const time_t *timep) {
+  return(asctime(localtime(timep)));
+}
+
+char * ctime_r(const time_t *timep, char *buf) {
+  return asctime_r(localtime(timep), buf);
 }
 
