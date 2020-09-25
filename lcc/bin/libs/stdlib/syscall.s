@@ -293,6 +293,18 @@ _linkat:
 	ecall
 	jal x0,cerror
 
+	.globl link
+	.globl _link
+link:
+_link:
+	li x10,-100
+	mv x11,x12
+	li x12,-100
+	li x14,0
+	li x17,37
+	ecall
+	jal x0,cerror
+
 	.globl unlinkat
 	.globl _unlinkat
 unlinkat:
@@ -402,13 +414,25 @@ _mknod:
 	ecall
 	jal x0,cerror
 
-	.globl faccess2
-faccess2:
+	.globl faccessat
+faccessat:
 	mv x10,x12
 	mv x11,x13
 	mv x12,x14
 	mv x13,x15
-	li x17,439
+	li x17,48
+	ecall
+	jal x0,cerror
+
+	.globl access
+	.globl _access
+access:
+_access:
+	li x10,-100
+	mv x11,x12
+	mv x12,x13
+	li x13,0
+	li x17,48
 	ecall
 	jal x0,cerror
 
@@ -417,6 +441,15 @@ mkdirat:
 	mv x10,x12
 	mv x11,x13
 	mv x12,x14
+	li x17,34
+	ecall
+	jal x0,cerror
+
+	.globl mkdir
+mkdir:
+	li x10,-100
+	mv x11,x12
+	mv x12,x13
 	li x17,34
 	ecall
 	jal x0,cerror
