@@ -307,8 +307,17 @@ _unlinkat:
 	.globl unlink
 unlink:
 	li x10,-100
-	mv x11,x13
+	mv x11,x12
 	li x12,0
+	li x17,35
+	ecall
+	jal x0,cerror
+
+	.globl rmdir
+rmdir:
+	li x10,-100
+	mv x11,x12
+	li x12,512	; AT_REMOVEDIR
 	li x17,35
 	ecall
 	jal x0,cerror
