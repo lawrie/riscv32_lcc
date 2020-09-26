@@ -119,7 +119,7 @@ char *asctime(const struct tm *tm) {
     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   };
-  static char  result[25];
+  static char  result[26];
 
   strcpy(result, "Day Mon 00 00:00:00 1900\n");
   memcpy(result, wday_name[tm->tm_wday], 3);
@@ -130,7 +130,8 @@ char *asctime(const struct tm *tm) {
   putnumb(result+17, tm->tm_sec);
   putnumb(result+20, 19 + tm->tm_year / 100);
   putnumb(result+22, tm->tm_year);
-  result[24] = 0;
+  result[24] = '\n';
+  result[25] = 0;
 	
   return result;
 }

@@ -97,7 +97,6 @@ _fstat:			; Needs fixing
 	li x10,-1
         jalr x0,x1,0
 
-
 	.globl _brk
 _brk:
 	mv x10,x12
@@ -133,6 +132,27 @@ _dup3:
 	mv x11,x13
 	mv x12,x14
 	li x17,24
+	ecall
+	jal x0,cerror
+
+	.globl fcntl
+	.globl _fcntl
+fcnct:
+_fcntl:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	li x17,25
+	ecall
+	jal x0,cerror
+
+	.globl flock
+	.globl _flock
+flock:
+_flock:
+	mv x10,x12
+	mv x11,x13
+	li x17,32
 	ecall
 	jal x0,cerror
 
@@ -228,13 +248,58 @@ _chdir:
 	ecall
 	jal x0,cerror
 
-	.globl chmod
-	.globl _chmod
-chmod:
-_chmod:
+	.globl fchdir
+	.globl _fchdir
+fchdir:
+_fchdir:
+	mv x10,x12
+	li x17,50
+	ecall
+	jal x0,cerror
+
+	.globl fchmod
+	.globl _fchmod
+fchmod:
+_fchmod:
 	mv x10,x12
 	mv x11,x13
 	li x17,52
+	ecall
+	jal x0,cerror
+
+	.globl fchmodat
+	.globl _fchmodat
+fchmodat:
+_fchmodat:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	mv x13,x15
+	li x17,53
+	ecall
+	jal x0,cerror
+
+	.globl fchown
+	.globl _fchown
+fchown:
+_fchown:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	li x17,55
+	ecall
+	jal x0,cerror
+
+	.globl fchownat
+	.globl _fchownat
+fchownat:
+_fchownat:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	mv x13,x15
+	mv x14,x16
+	li x17,54
 	ecall
 	jal x0,cerror
 
@@ -317,7 +382,9 @@ _unlinkat:
 	jal x0,cerror
 
 	.globl unlink
+	.globl _unlink
 unlink:
+_unlink:
 	li x10,-100
 	mv x11,x12
 	li x12,0
@@ -326,7 +393,9 @@ unlink:
 	jal x0,cerror
 
 	.globl rmdir
+	.globl _rmdir
 rmdir:
+_rmdir:
 	li x10,-100
 	mv x11,x12
 	li x12,512	; AT_REMOVEDIR
@@ -446,7 +515,9 @@ mkdirat:
 	jal x0,cerror
 
 	.globl mkdir
+	.globl _mkdir
 mkdir:
+_mkdir:
 	li x10,-100
 	mv x11,x12
 	mv x12,x13
@@ -540,6 +611,15 @@ _sigaction:
 sync:
 _sync:
 	li x17,81
+	ecall
+	jal x0,cerror
+
+	.globl fsync
+	.globl _fsync
+fsync:
+_fsync:
+	mv x10,x12
+	li x17,82
 	ecall
 	jal x0,cerror
 
