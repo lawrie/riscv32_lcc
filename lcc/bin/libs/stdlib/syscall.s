@@ -345,6 +345,31 @@ _kill:
 	ecall
 	jal x0,cerror
 
+	.globl renameat2
+	.globl _renameat2
+renameat2:
+_renameat2:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	mv x13,x15
+	mv x14,x16
+	li x17,276
+	ecall
+	jal x0,cerror
+
+	.globl rename
+	.globl _rename
+rename:
+_rename:
+	li x10,-100
+	mv x11,x12
+	li x12,-100
+	li x14,0
+	li x17,276
+	ecall
+	jal x0,cerror
+
 	.globl linkat
 	.globl _linkat
 linkat:
@@ -522,6 +547,26 @@ _mkdir:
 	mv x11,x12
 	mv x12,x13
 	li x17,34
+	ecall
+	jal x0,cerror
+
+	.globl truncate
+	.globl _truncate
+truncate:
+_truncate:
+	mv x10,x12
+	mv x11,x13
+	li x17,45
+	ecall
+	jal x0,cerror
+
+	.globl ftruncate
+	.globl _ftruncate
+ftruncate:
+_ftruncate:
+	mv x10,x12
+	mv x11,x13
+	li x17,46
 	ecall
 	jal x0,cerror
 
