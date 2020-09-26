@@ -10,7 +10,6 @@ _start:
 	andi x2, x2, -16
 
 	jal x1,main	; x10 = main(argc, argv, env)
-
-	li x17,93	; exit(x10);
-	ecall
+	mv x12,x10
+	jal x1, exit
 
