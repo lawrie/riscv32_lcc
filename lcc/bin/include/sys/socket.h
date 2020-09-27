@@ -83,6 +83,7 @@
  * component pNA):
  */
 
+/*
 #define socket       _rpc_socket
 #define accept       _rpc_accept
 #define bind         _rpc_bind
@@ -92,7 +93,7 @@
 #define closesocket  _rpc_closesocket
 #define inet_addr    _rpc_inet_addr
 #define listen       _rpc_listen
-
+*/
 
 #ifdef __LITTLE_ENDIAN__
 	#define htonl(addr)     ( (((unsigned long)(addr) & 0x000000FF)<<24) | \
@@ -114,7 +115,7 @@
 #endif
 
 
-
+typedef int socklen_t;
 
 /*------------------------*/
 /* Generic Socket address */
@@ -143,7 +144,6 @@ struct sockaddr_in
     struct in_addr   sin_addr;    
     char             sin_zero[8];           
     };
-
 
 int             socket      (int af, int type, int protocol);
 int             accept      (int s, struct sockaddr *addr, int  *addrlen);

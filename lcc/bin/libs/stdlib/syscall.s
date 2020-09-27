@@ -668,6 +668,32 @@ _fsync:
 	ecall
 	jal x0,cerror
 
+	.globl pselect6
+	.globl _pselect6
+pselect6:
+_pselect6:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	mv x13,x15
+	mv x14,x16
+	mv x15,x17
+	li x17,72
+	ecall
+	jal x0,cerror
+
+	.globl ppoll
+	.globl _ppoll
+ppoll:
+_ppoll:
+	mv x10,x12
+	mv x11,x13
+	mv x12,x14
+	mv x13,x15
+	li x17,73
+	ecall
+	jal x0,cerror
+
 	.globl _isatty
 _isatty:
 	li x10,1

@@ -41,14 +41,13 @@ listen:
         ecall
         jal x0,cerror
 
-; accept(fd, addr, len ,flags])
+; accept(fd, addr, len)
 ;
         .globl accept
 accept:
         mv x10,x12
         mv x11,x13
         mv x12,x14
-        mv x13,x15
         li x17,202
         ecall
         jal x0,cerror
