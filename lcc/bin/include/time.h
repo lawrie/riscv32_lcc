@@ -32,6 +32,18 @@ struct tm
 	int	tm_isdst;
 };
 
+#define CLOCK_REALTIME           0
+#define CLOCK_MONOTONIC          1
+#define CLOCK_PROCESS_CPUTIME_ID 2
+
+typedef int clockid_t;
+
+struct timespec {
+  time_t tv_sec;
+  long tv_nsec;
+};
+
+
 /* Standard functions. */
 extern	char	  *asctime   (const struct tm *__timeptr);
 extern	clock_t	   clock     (void);

@@ -1,12 +1,5 @@
 #include <time.h>
 
-# define CLOCK_PROCESS_CPUTIME_ID 2
-
-struct timespec {
-  time_t tv_sec;
-  long tv_nsec;
-};
-
 clock_t clock(void) {
   struct timespec ts;
   clock_t result = clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &ts);
